@@ -5,7 +5,10 @@ from tkinter.ttk import Combobox, Treeview, Style
 from uuid import uuid4, uuid1
 from datetime import datetime
 
+from os.path import isfile
+
 from db import saveNote
+from encryption import encryption
 
 def newNote():
     top = Toplevel()
@@ -30,7 +33,14 @@ def newNote():
         if not enTitle.get() or not enDescription.get() or not enLink.get():
             showwarning('Attention', 'Missing fields to fill')
         else:
-            saveNote(enTitle.get(), enDescription.get(), enLink.get())
+            if not isfile('db/public.json') and not isfile('db/private.json'):
+                showwarning('Attention', 'Generate keys first please')
+                top.destroy()    
+            else:
+                title = encryption(enTitle.get())
+                description = encryption(enDescription.get())
+                link = encryption(enLink.get())
+                saveNote(str(title), str(description), str(link))
 
         top.destroy()
     

@@ -1,12 +1,12 @@
 from rsa import newkeys, encrypt, decrypt
 from rsa.key import PublicKey, PrivateKey
 
-from tkinter.messagebox import showinfo, askyesno
+from tkinter.messagebox import showinfo, askyesno, showwarning
 
 from os.path import isfile
 from os import remove
 
-from db import savePublicKey, savePrivateKey
+from db import savePublicKey, savePrivateKey, getKeys
 
 def generateKeys():
     (publicKey, privateKey) = newkeys(512)
@@ -26,3 +26,12 @@ def generateKeys():
             remove('db/private.json')
             save()
     else: save()
+
+def encryption(text):
+    publicKey, privateKey = getKeys()
+
+    publicKey = PublicKey(int(publicKey[0]), int(publicKey[1]) )
+    privateKey = PrivateKey(int(privateKey[0]), int(privateKey[1]), int(privateKey[2]), int(privateKey[3]), int(privateKey[4]))
+
+    encText = encrypt(text.encode('utf8'), publicKey)
+    return encText

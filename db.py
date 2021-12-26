@@ -30,6 +30,26 @@ def savePrivateKey(n,e, d, p, q):
     db, _ = databaseSelect('private')
     db.insert(data)
 
+def getKeys():
+    publicKey, privateKey = [], []
+
+    db, _ = databaseSelect('public')
+    for item in db:
+        publicKey.append(item['parts']['n'])
+        publicKey.append(item['parts']['e'])
+
+    db, _ = databaseSelect('private')
+    for item in db:
+        privateKey.append(item['parts']['n'])
+        privateKey.append(item['parts']['e'])
+        privateKey.append(item['parts']['d'])
+        privateKey.append(item['parts']['p'])
+        privateKey.append(item['parts']['q'])
+
+    return publicKey, privateKey
+
+
+
 def saveNote(title, description, link):
     data = {
         'id': str(uuid4()),
