@@ -10,8 +10,6 @@ def databaseSelect(name):
 
     return db, Element
 
-# PublicKey(n, e)
-# PrivateKey(n, e, d, p, q)
 def savePublicKey(n,e):
     data = {
         'id': str(uuid4()),
@@ -31,3 +29,15 @@ def savePrivateKey(n,e, d, p, q):
 
     db, _ = databaseSelect('private')
     db.insert(data)
+
+def saveNote(title, description, link):
+    data = {
+        'id': str(uuid4()),
+        'note': { 'title': title, 'description': description, 'link': link },
+        'completed': False,
+        'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    }
+
+    db, _ = databaseSelect('note')
+    db.insert(data)
+

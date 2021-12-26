@@ -2,6 +2,7 @@ from tkinter import Tk, Label,LabelFrame, Button
 from PIL import Image, ImageTk
 
 from encryption import generateKeys
+from topWindows import newNote
 
 def main_window():
     root = Tk()
@@ -25,7 +26,7 @@ def main_window():
     btnNewKeys = Button(frame_button, text='Generate keys', command=generateKeys, font='Source_Code_Pro', bg='#0005FF', fg='white', height=1, width=10, padx=15)
     btnNewKeys.grid(row=0, column=0)
 
-    btnNewNote = Button(frame_button, text='New None', font='Source_Code_Pro', bg='#00FF14', fg='white', height=1, width=10, padx=15)
+    btnNewNote = Button(frame_button, text='New None', command=newNote, font='Source_Code_Pro', bg='#00FF14', fg='white', height=1, width=10, padx=15)
     btnNewNote.grid(row=0, column=1)
 
     btnViewNotes = Button(frame_button, text='View Notes', font='Source_Code_Pro', bg='#FF0000', fg='white', height=1, width=10, padx=15)
