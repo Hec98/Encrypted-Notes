@@ -1,6 +1,8 @@
 from rsa import newkeys, encrypt, decrypt
 from rsa.key import PublicKey, PrivateKey
 
+from tkinter.messagebox import showinfo, askyesno
+
 from os.path import isfile
 from os import remove
 
@@ -15,9 +17,12 @@ def generateKeys():
     def save():
         savePublicKey(n, e)
         savePrivateKey(n, e, d, p, q)
+        showinfo('Info','New keys generated')
 
     if isfile('db/public.json') or isfile('db/private.json'):
-        remove('db/public.json')
-        remove('db/private.json')
-        save()
+        res = askyesno('Are you sure?', 'It will remove the existing keys, in addition to removing the current database')
+        if res is True:
+            remove('db/public.json')
+            remove('db/private.json')
+            save()
     else: save()

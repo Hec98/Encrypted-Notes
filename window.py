@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Label,LabelFrame, Button
+from tkinter import Tk, Label,LabelFrame, Button
 from PIL import Image, ImageTk
 
 from encryption import generateKeys
