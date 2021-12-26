@@ -1,4 +1,4 @@
-# Encryption Notes
+# Encrypted Notes
 ## Required modules
 ```sh
 pip install rsa tinydb uuid Pillow
