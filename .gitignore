@@ -1,4 +1,6 @@
 db/private.json
+db/public.json 
+# Quit db/public.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
