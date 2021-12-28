@@ -6,7 +6,7 @@ from tkinter.messagebox import showinfo, askyesno, showwarning
 from os.path import isfile
 from os import remove
 
-from db import savePublicKey, savePrivateKey, getKeys
+from tinyDB import savePublicKey, savePrivateKey, getKeys
 
 def generateKeys():
     (publicKey, privateKey) = newkeys(512)

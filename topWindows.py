@@ -1,13 +1,9 @@
-from tkinter import Toplevel, Label, Entry, Button, messagebox, LabelFrame, StringVar
+from tkinter import Toplevel, Label, Entry, Button, LabelFrame, StringVar
 from tkinter.messagebox import showwarning
 from tkinter.ttk import Combobox, Treeview, Style
 
-from uuid import uuid4, uuid1
-from datetime import datetime
-
 from os.path import isfile
 
-from db import saveNote
 from encryption import encryption
 
 def newNote():
@@ -40,7 +36,6 @@ def newNote():
                 title = encryption(enTitle.get())
                 description = encryption(enDescription.get())
                 link = encryption(enLink.get())
-                saveNote(str(title), str(description), str(link))
 
         top.destroy()
     
