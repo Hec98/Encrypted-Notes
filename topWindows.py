@@ -5,6 +5,7 @@ from tkinter.ttk import Combobox, Treeview, Style
 from os.path import isfile
 
 from encryption import encryption
+from mongoDB import saveDatabase
 
 def newNote():
     top = Toplevel()
@@ -36,6 +37,7 @@ def newNote():
                 title = encryption(enTitle.get())
                 description = encryption(enDescription.get())
                 link = encryption(enLink.get())
+                saveDatabase(title, description, link)
 
         top.destroy()
     

@@ -7,6 +7,7 @@ from os.path import isfile
 from os import remove
 
 from tinyDB import savePublicKey, savePrivateKey, getKeys
+from mongoDB import deleteDB
 
 def generateKeys():
     (publicKey, privateKey) = newkeys(512)
@@ -24,6 +25,7 @@ def generateKeys():
         if res is True:
             remove('db/public.json')
             remove('db/private.json')
+            deleteDB()
             save()
     else: save()
 
