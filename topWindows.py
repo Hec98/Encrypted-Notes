@@ -4,13 +4,18 @@ from tkinter.ttk import Combobox, Treeview, Style
 
 from os.path import isfile
 
-from encryption import encryption
+from encryption import encryption, decrypted
 from mongoDB import saveDatabase
 
 def newNote():
+    if not isfile('db/public.json') and not isfile('db/private.json'): showwarning('Attention', 'Generate keys first please')
+    else: generateNote()
+
+def generateNote():
     top = Toplevel()
     top.title('New Note')
 
+    
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
     enTitle = Entry(top, width=40, font=('Source_Code_Pro',11))
@@ -30,14 +35,10 @@ def newNote():
         if not enTitle.get() or not enDescription.get() or not enLink.get():
             showwarning('Attention', 'Missing fields to fill')
         else:
-            if not isfile('db/public.json') and not isfile('db/private.json'):
-                showwarning('Attention', 'Generate keys first please')
-                top.destroy()    
-            else:
-                title = encryption(enTitle.get())
-                description = encryption(enDescription.get())
-                link = encryption(enLink.get())
-                saveDatabase(title, description, link)
+            title = encryption(enTitle.get())
+            description = encryption(enDescription.get())
+            link = encryption(enLink.get())
+            saveDatabase(title, description, link)
 
         top.destroy()
     
