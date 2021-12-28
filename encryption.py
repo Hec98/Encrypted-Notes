@@ -10,12 +10,11 @@ from tinyDB import savePublicKey, savePrivateKey, getKeys
 from mongoDB import deleteDB
 
 def generateKeys():
-    (publicKey, privateKey) = newkeys(512)
-
-    (n, e) = publicKey['n'], publicKey['e']
-    (d, p, q) = privateKey['d'], privateKey['p'], privateKey['q']
-    
     def save():
+        (publicKey, privateKey) = newkeys(512)
+        (n, e) = publicKey['n'], publicKey['e']
+        (d, p, q) = privateKey['d'], privateKey['p'], privateKey['q']
+
         savePublicKey(n, e)
         savePrivateKey(n, e, d, p, q)
         showinfo('Info','New keys generated')
