@@ -1,5 +1,4 @@
 from tinydb import TinyDB, Query
-from datetime import datetime
 
 def databaseSelect(name):
     # db = TinyDB(f'db/{name}.json', indent=2, separators=(',', ': '))
@@ -12,7 +11,6 @@ def databaseSelect(name):
 def savePublicKey(n,e):
     data = {
         'parts': { 'n': n, 'e': e },
-        'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     }
 
     db, _ = databaseSelect('public')
@@ -21,7 +19,6 @@ def savePublicKey(n,e):
 def savePrivateKey(n,e, d, p, q):
     data = {
         'parts': { 'n': n, 'e': e, 'd': d, 'p': p, 'q': q },
-        'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     }
 
     db, _ = databaseSelect('private')

@@ -91,7 +91,7 @@ def generateTable():
     table.column(col[1], width=250, anchor='center')
     table.column(col[2], width=250, anchor='center')
     table.column(col[3], width=250, anchor='center')
-    table.column(col[4], width=180, anchor='center')
+    table.column(col[4], width=190, anchor='center')
 
     table.heading("#0", text='')
     table.heading(col[1], text=col[1])
