@@ -16,10 +16,19 @@ def saveDatabase(title, description, link):
     data = {
         '_id': str(uuid4()),
         'note': {'title': title, 'description': description, 'link': link},
+        'available': True,
         'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     }
 
     collection.insert_one(data)
+
+def getData():
+    collection = runMongo(MONGO_URI)
+    results = collection.find({'available': True})
+    
+    
+    return results
+
 
 def deleteDB():
     collection = runMongo(MONGO_URI)
