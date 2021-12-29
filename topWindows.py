@@ -1,11 +1,11 @@
 from tkinter import Toplevel, Label, Entry, Button, LabelFrame, StringVar
-from tkinter.messagebox import showwarning
+from tkinter.messagebox import showwarning, askyesno
 from tkinter.ttk import Combobox, Treeview, Style
 
 from os.path import isfile
 
 from encryption import encryption, decrypted
-from mongoDB import saveDatabase, getData
+from mongoDB import saveDatabase, getData, removeData
 
 def newNote():
     if not isfile('db/public.json') and not isfile('db/private.json'): showwarning('Attention', 'Generate keys first please')
@@ -18,7 +18,6 @@ def getTable():
 def generateNote():
     top = Toplevel()
     top.title('New Note')
-
     
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
@@ -74,6 +73,12 @@ def generateTable():
 
         for addTable in dataTable: table.insert(parent='', index='end', values=(addTable))
 
+    def remove():
+        id = get_id()
+        res = askyesno('Warning', 'Are you sure you want to remove this record?')
+        if res is True: removeData(id)
+        updateTable()
+
     top = Toplevel()
     top.title('My notes')
 
@@ -106,7 +111,7 @@ def generateTable():
 
     bnt_update = Button(frame_button, text='Edit', bg='#00FF14', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_update.grid(row=0, column=0, sticky='we')
-    bnt_delete = Button(frame_button, text='Remove', bg='#FF0000', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
+    bnt_delete = Button(frame_button, text='Remove', command=remove, bg='#FF0000', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_delete.grid(row=0, column=1, sticky='we')
     updateTable()
 
