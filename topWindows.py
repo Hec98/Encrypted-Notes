@@ -1,6 +1,6 @@
 from tkinter import Toplevel, Label, Entry, Button, LabelFrame, StringVar
 from tkinter.messagebox import showwarning, askyesno
-from tkinter.ttk import Combobox, Treeview, Style
+from tkinter.ttk import Treeview, Style
 
 from os.path import isfile
 
@@ -18,6 +18,7 @@ def getTable():
 def generateNote():
     top = Toplevel()
     top.title('New Note')
+    top.resizable(False, False)
     
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
@@ -91,6 +92,7 @@ def generateTable():
 
     top = Toplevel()
     top.title('My notes')
+    top.resizable(False, False)
 
     style = Style()
     style.configure("mystyle.Treeview", highlightthickness=0, bd=0, font=('Source_Code_Pro', 11)) # Modify the font of the body
@@ -139,6 +141,7 @@ def editRecord(data):
 
     top = Toplevel()
     top.title('Edit Record')
+    top.resizable(False, False)
     
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
