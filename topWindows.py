@@ -5,7 +5,7 @@ from tkinter.ttk import Combobox, Treeview, Style
 from os.path import isfile
 
 from encryption import encryption, decrypted
-from mongoDB import saveDatabase, getData, removeData
+from mongoDB import getDataOne, saveDatabase, getData, removeData, updateData
 
 def newNote():
     if not isfile('db/public.json') and not isfile('db/private.json'): showwarning('Attention', 'Generate keys first please')
@@ -52,9 +52,12 @@ def generateNote():
 
 def generateTable():
     def get_id():
-        id = table.item(table.focus())
-        id = id['values'][0] if id is not None else None
-        return id
+        try:
+            id = table.item(table.focus())
+            id = id['values'][0] if id is not None else None
+            return id
+        except:
+            pass
 
     def updateTable():
         records = table.get_children()
@@ -72,6 +75,13 @@ def generateTable():
             dataTable.append(tem)
 
         for addTable in dataTable: table.insert(parent='', index='end', values=(addTable))
+    
+    def edit():
+        id = get_id()
+        data = getDataOne(id)
+        if id is not None: top.destroy()
+        try: editRecord(data)
+        except: pass
 
     def remove():
         id = get_id()
@@ -109,10 +119,54 @@ def generateTable():
     frame_button = LabelFrame(top, borderwidth = 0, pady=5)
     frame_button.grid(row = 1, column = 0, sticky="N")
 
-    bnt_update = Button(frame_button, text='Edit', bg='#00FF14', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
+    bnt_update = Button(frame_button, text='Edit', command=edit, bg='#00FF14', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_update.grid(row=0, column=0, sticky='we')
     bnt_delete = Button(frame_button, text='Remove', command=remove, bg='#FF0000', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_delete.grid(row=0, column=1, sticky='we')
     updateTable()
+
+    top.mainloop()
+
+def editRecord(data):
+    id = data['_id']
+    
+    varTitle = StringVar()
+    varTitle.set(decrypted(data['note']['title']))
+    varDescription = StringVar()
+    varDescription.set(decrypted(data['note']['description']))
+    varLink = StringVar()
+    varLink.set(decrypted(data['note']['link']))
+
+    top = Toplevel()
+    top.title('Edit Record')
+    
+    lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
+    lbTitle.grid(row=0, column=0)
+    enTitle = Entry(top, width=40, textvariable=varTitle, font=('Source_Code_Pro',11))
+    enTitle.grid(row=0, column=1)
+
+    lbDescription = Label(top, text='Description: ', font=('Source_Code_Pro',11))
+    lbDescription.grid(row=1, column=0)
+    enDescription = Entry(top, width=40, textvariable=varDescription, font=('Source_Code_Pro',11))
+    enDescription.grid(row=1, column=1)
+
+    lbLink = Label(top, text='Link: ', font=('Source_Code_Pro',11))
+    lbLink.grid(row=2, column=0)
+    enLink = Entry(top, width=40, textvariable=varLink, font=('Source_Code_Pro',11))
+    enLink.grid(row=2, column=1)
+    
+    def save():
+        if not enTitle.get() or not enDescription.get() or not enLink.get():
+            showwarning('Attention', 'Missing fields to fill')
+        else:
+            title = encryption(enTitle.get())
+            description = encryption(enDescription.get())
+            link = encryption(enLink.get())
+            updateData(id, title, description, link)
+            top.destroy()
+            getTable()
+
+    bntSave = Button(top, text='Guardar', bg='green', fg='white', font=('Arial',11), command=save)
+    bntSave.grid(row=5, column=0, columnspan=2, sticky='we')
 
     top.mainloop()

@@ -36,6 +36,11 @@ def getData():
     results = collection.find({'available': True})    
     return results
 
+def getDataOne(id):
+    collection =  runMongo(MONGO_URI)
+    result = collection.find_one({'_id': id})
+    return result
+
 def removeData(id):
     collection =  runMongo(MONGO_URI)
     collection.update_one({'_id': id}, {'$set': {'available': False}})
