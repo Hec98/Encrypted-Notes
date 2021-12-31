@@ -2,13 +2,17 @@ from pymongo import MongoClient
 from uuid import uuid4
 from datetime import datetime
 
-MONGO_URI = 'mongodb://localhost'
+from tkinter.messagebox import showerror
+
+from mongoUri import URI
+
+MONGO_URI = URI()
 
 def runMongo(MONGO_URI):
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(MONGO_URI)        
     db = client['notes']
     collection = db['notes']
-    return collection
+    return collection 
 
 def getDic(type, title, description, link):
     data = {}

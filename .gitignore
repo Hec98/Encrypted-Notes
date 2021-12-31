@@ -1,6 +1,6 @@
 db/private.json
 db/public.json 
-db/note.json
+mongoUri.py
 # Quit db/public.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
