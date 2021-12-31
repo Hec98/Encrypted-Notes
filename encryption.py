@@ -11,7 +11,7 @@ from mongoDB import deleteDB
 
 def generateKeys():
     def save():
-        (publicKey, privateKey) = newkeys(1024)
+        (publicKey, privateKey) = newkeys(2048)
         (n, e) = publicKey['n'], publicKey['e']
         (d, p, q) = privateKey['d'], privateKey['p'], privateKey['q']
 
