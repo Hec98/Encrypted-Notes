@@ -19,21 +19,21 @@ def generateNote():
     top = Toplevel()
     top.title('New Note')
     top.resizable(False, False)
-    
+
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
-    enTitle = Entry(top, width=40, font=('Source_Code_Pro',11))
+    enTitle = Entry(top, width=50, font=('Source_Code_Pro',11))
     enTitle.focus()
     enTitle.grid(row=0, column=1)
 
     lbDescription = Label(top, text='Description: ', font=('Source_Code_Pro',11))
     lbDescription.grid(row=1, column=0)
-    enDescription = Entry(top, width=40, font=('Source_Code_Pro',11))
+    enDescription = Entry(top, width=50, font=('Source_Code_Pro',11))
     enDescription.grid(row=1, column=1)
 
     lbLink = Label(top, text='Link: ', font=('Source_Code_Pro',11))
     lbLink.grid(row=2, column=0)
-    enLink = Entry(top, width=40, font=('Source_Code_Pro',11))
+    enLink = Entry(top, width=50, font=('Source_Code_Pro',11))
     enLink.grid(row=2, column=1)
 
     def save():
@@ -46,9 +46,12 @@ def generateNote():
             saveDatabase(title, description, link)
 
         top.destroy()
-    
-    bntSave = Button(top, text='Save', bg='#00FF14', fg='white', font=('Arial',11), command=save)
-    bntSave.grid(row=6, column=0, columnspan=2, sticky='we')
+
+    frame_button = LabelFrame(top, borderwidth = 0, pady=5)
+    frame_button.grid(row = 3, column = 0, columnspan=2, sticky="N")
+
+    bntSave = Button(frame_button, text='Save', bg='#00986D', fg='white', font=('Source_Code_Pro',11), height=1, width=57, command=save)
+    bntSave.grid(row=0, column=0,sticky='we')
 
     top.mainloop()
 
@@ -77,7 +80,7 @@ def generateTable():
             dataTable.append(tem)
 
         for addTable in dataTable: table.insert(parent='', index='end', values=(addTable))
-    
+
     def edit():
         id = get_id()
         data = getDataOne(id)
@@ -108,7 +111,7 @@ def generateTable():
     table.column(col[0], width=0, stretch="NO")
     table.column(col[1], width=250, anchor='center')
     table.column(col[2], width=250, anchor='center')
-    table.column(col[3], width=250, anchor='center')
+    table.column(col[3], width=300, anchor='center')
     table.column(col[4], width=190, anchor='center')
 
     table.heading("#0", text='')
@@ -122,9 +125,9 @@ def generateTable():
     frame_button = LabelFrame(top, borderwidth = 0, pady=5)
     frame_button.grid(row = 1, column = 0, sticky="N")
 
-    bnt_update = Button(frame_button, text='Edit', command=edit, bg='#00FF14', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
+    bnt_update = Button(frame_button, text='Edit', command=edit, bg='#00986D', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_update.grid(row=0, column=0, sticky='we')
-    bnt_delete = Button(frame_button, text='Remove', command=remove, bg='#FF0000', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
+    bnt_delete = Button(frame_button, text='Remove', command=remove, bg='#980009', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_delete.grid(row=0, column=1, sticky='we')
     updateTable()
 
@@ -132,7 +135,7 @@ def generateTable():
 
 def editRecord(data):
     id = data['_id']
-    
+
     varTitle = StringVar()
     varTitle.set(decrypted(data['note']['title']))
     varDescription = StringVar()
@@ -143,23 +146,23 @@ def editRecord(data):
     top = Toplevel()
     top.title('Edit Record')
     top.resizable(False, False)
-    
+
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
-    enTitle = Entry(top, width=40, textvariable=varTitle, font=('Source_Code_Pro',11))
+    enTitle = Entry(top, width=50, textvariable=varTitle, font=('Source_Code_Pro',11))
     enTitle.focus()
     enTitle.grid(row=0, column=1)
 
     lbDescription = Label(top, text='Description: ', font=('Source_Code_Pro',11))
     lbDescription.grid(row=1, column=0)
-    enDescription = Entry(top, width=40, textvariable=varDescription, font=('Source_Code_Pro',11))
+    enDescription = Entry(top, width=50, textvariable=varDescription, font=('Source_Code_Pro',11))
     enDescription.grid(row=1, column=1)
 
     lbLink = Label(top, text='Link: ', font=('Source_Code_Pro',11))
     lbLink.grid(row=2, column=0)
-    enLink = Entry(top, width=40, textvariable=varLink, font=('Source_Code_Pro',11))
+    enLink = Entry(top, width=50, textvariable=varLink, font=('Source_Code_Pro',11))
     enLink.grid(row=2, column=1)
-    
+
     def save():
         if not enTitle.get() or not enDescription.get() or not enLink.get():
             showwarning('Attention', 'Missing fields to fill')
@@ -171,7 +174,10 @@ def editRecord(data):
             top.destroy()
             getTable()
 
-    bntSave = Button(top, text='Guardar', bg='green', fg='white', font=('Arial',11), command=save)
-    bntSave.grid(row=5, column=0, columnspan=2, sticky='we')
+    frame_button = LabelFrame(top, borderwidth = 0, pady=5)
+    frame_button.grid(row = 5, column = 0, columnspan=2, sticky="N")
+
+    bntSave = Button(frame_button, text='Save', bg='#00986D', fg='white', font=('Source_Code_Pro',11), height=1, width=57, command=save)
+    bntSave.grid(row=0, column=0,sticky='we')
 
     top.mainloop()
