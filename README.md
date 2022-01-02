@@ -3,7 +3,10 @@
 ```sh
 pip install rsa tinydb pymongo uuid Pillow
 ```
-
+## In windows install
+```sh
+pip install "pymongo[srv]"
+```
 ## It is important to generate the mongoUri.py file, to define username and password and connection link
 ```sh
 echo "def URI():
