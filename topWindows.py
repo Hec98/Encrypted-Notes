@@ -23,6 +23,7 @@ def generateNote():
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
     enTitle = Entry(top, width=40, font=('Source_Code_Pro',11))
+    enTitle.focus()
     enTitle.grid(row=0, column=1)
 
     lbDescription = Label(top, text='Description: ', font=('Source_Code_Pro',11))
@@ -146,6 +147,7 @@ def editRecord(data):
     lbTitle = Label(top, text='Title: ', font=('Source_Code_Pro',11))
     lbTitle.grid(row=0, column=0)
     enTitle = Entry(top, width=40, textvariable=varTitle, font=('Source_Code_Pro',11))
+    enTitle.focus()
     enTitle.grid(row=0, column=1)
 
     lbDescription = Label(top, text='Description: ', font=('Source_Code_Pro',11))
