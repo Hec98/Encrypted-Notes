@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Label, Entry, Button, LabelFrame, StringVar
+from tkinter import Toplevel, Label, Entry, Button, LabelFrame, StringVar, Scrollbar
 from tkinter.messagebox import showwarning, askyesno
 from tkinter.ttk import Treeview, Style
 
@@ -103,7 +103,12 @@ def generateTable():
     style.configure("mystyle.Treeview.Heading", font=('Source_Code_Pro', 12,'bold')) # Modify the font of the headings
     style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})]) # Remove the borders
 
-    table = Treeview(top, style="mystyle.Treeview")
+    table = Treeview(top, style="mystyle.Treeview", height=20)
+
+    sb = Scrollbar(top, orient='vertical')
+    sb.grid(row=0, column=1, sticky='NS')
+    table.config(yscrollcommand=sb.set)
+    sb.config(command=table.yview)
 
     col = table['columns'] = ('id', 'Title', 'Description', 'Link', 'Date')
 
