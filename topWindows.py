@@ -132,10 +132,14 @@ def generateTable():
 
     bnt_update = Button(frame_button, text='Edit', command=edit, bg='#00986D', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_update.grid(row=0, column=0, sticky='we')
+
     bnt_delete = Button(frame_button, text='Remove', command=remove, bg='#980009', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
     bnt_delete.grid(row=0, column=1, sticky='we')
-    updateTable()
 
+    btn_refresh = Button(frame_button, text='Refresh', command=updateTable, bg='#009841', font='Source_Code_Pro', fg='white', height=1, width=10, padx=15)
+    btn_refresh.grid(row=0, column=2, sticky='we')
+
+    updateTable()
     top.mainloop()
 
 def editRecord(data):
