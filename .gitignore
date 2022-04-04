@@ -1,6 +1,7 @@
 db/private.json
 db/public.json 
-mongoUri.py
+mongo_uri.py
+.vim
 # Quit db/public.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
