@@ -1,7 +1,7 @@
 # Encrypted Notes
 ## Required modules
 ```sh
-pip install rsa tinydb pymongo uuid Pillow
+pip install rsa tinydb pymongo uuid Pillow screeninfo
 ```
 ## In windows install
 ```sh
