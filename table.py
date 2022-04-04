@@ -17,13 +17,14 @@ def control_area(frame, font_main, font_bold, x, y):
     col = table_tree['columns'] = ('id', 'Title', 'Description', 'Link', 'Date')
 
     width_x = round(x / (len(col) - 1) ) - 8
+    col_ra = round(width_x/3)
 
     table_tree.column("#0", width=0,  stretch="NO")
     table_tree.column(col[0], width=0, stretch="NO")
-    table_tree.column(col[1], width=width_x, anchor='center')
-    table_tree.column(col[2], width=width_x, anchor='center')
-    table_tree.column(col[3], width=width_x, anchor='center')
-    table_tree.column(col[4], width=width_x, anchor='center')
+    table_tree.column(col[1], width=width_x + col_ra, anchor='center')
+    table_tree.column(col[2], width=width_x - col_ra, anchor='center')
+    table_tree.column(col[3], width=width_x + col_ra, anchor='center')
+    table_tree.column(col[4], width=width_x - col_ra, anchor='center')
 
     table_tree.heading("#0", text='')
     table_tree.heading(col[1], text=col[1])

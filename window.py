@@ -18,9 +18,9 @@ def main_window():
     root.geometry(f'{r_x}x{r_y}')
     root.resizable(False, False)
 
-    frame_logo = LabelFrame(root, borderwidth=0, pady=10, padx=10)
+    frame_logo = LabelFrame(root, borderwidth=0, pady=5, padx=10)
     frame_table = LabelFrame(root, borderwidth=0, pady=10, padx=10)
-    frame_buttons = LabelFrame(root, borderwidth=0, pady=10, padx=10)
+    frame_buttons = LabelFrame(root, borderwidth=0, pady=15, padx=10)
    
     frame_logo.grid(row=0, column=0, sticky="N")
     frame_table.grid(row=1, column=0, sticky="N")
@@ -34,18 +34,7 @@ def main_window():
 
     table = control_area(frame_table, font_main, font_bold, r_x, r_y)
 
-    # update_table(table)
+    update_table(table)
     buttons_area(frame_buttons, table, font_form, font_button, r_x)
-    # frame_button = LabelFrame(root, borderwidth = 0, pady=10, padx=20)
- 
-    # frame_button.grid(row = 1, column = 0, sticky="N")
-    # btnNewKeys = Button(frame_button, text='Generate keys', command=generateKeys, font='Source_Code_Pro', bg='#002598', fg='white', height=1, width=10, padx=15)
-    # btnNewKeys.grid(row=0, column=0)
- 
-    # btnNewNote = Button(frame_button, text='New None', command=newNote, font='Source_Code_Pro', bg='#00986D', fg='white', height=1, width=10, padx=15)
-    # btnNewNote.grid(row=0, column=1)
- 
-    # btnViewNotes = Button(frame_button, text='View Notes', command=getTable, font='Source_Code_Pro', bg='#980009', fg='white', height=1, width=10, padx=15)
-    # btnViewNotes.grid(row=0, column=2)
-
+    
     root.mainloop()
