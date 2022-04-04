@@ -7,7 +7,7 @@ from mongodb import set_data, update_data
 from control_table import update_table
 
 
-def form_main(top_form, frame_form, new, data, table, font_main, en_width, btn_1, btn_2):
+def form_main(top_form, frame_form, new, data, table, font_main, font_button, en_width, btn_1, btn_2):
     btn_1.config(state='disabled')
     btn_2.config(state='disabled')
     def on_close():
@@ -87,7 +87,7 @@ def form_main(top_form, frame_form, new, data, table, font_main, en_width, btn_1
                 on_close()
             update_table(table)
     
-    get_button = Button(frame_form, command=save_data, font=font_main, bg='#00986D', fg='white', text='Guadar Registro' if new else 'Editar Registro')
+    get_button = Button(frame_form, command=save_data, font=font_button, bg='#00986D', fg='white', text='Guadar Registro' if new else 'Editar Registro')
     get_button.grid(row=4, column=0, columnspan=4, sticky="NSWE")
 
     top_form.protocol('WM_DELETE_WINDOW', on_close)

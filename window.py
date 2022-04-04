@@ -33,8 +33,11 @@ def main_window():
     logo_label.grid(row=0, column=0)
 
     table = control_area(frame_table, font_main, font_bold, r_x, r_y)
-
-    update_table(table)
-    buttons_area(frame_buttons, table, font_form, font_button, r_x)
+    try:
+        update_table(table)
+        buttons_area(frame_buttons, table, font_form, font_button, r_x)
+    except:
+        print('Error connecting to database')
+        root.destroy()
     
     root.mainloop()
