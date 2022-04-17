@@ -2,7 +2,7 @@ from tkinter import Tk, Label,LabelFrame, Button
 from PIL import Image, ImageTk
 
 from table import control_area
-from control_table import update_table
+from control_table import update_table, search
 from buttons import buttons_area
 
 from encryption import generate_keys
@@ -19,12 +19,14 @@ def main_window():
     root.resizable(False, False)
 
     frame_logo = LabelFrame(root, borderwidth=0, pady=5, padx=10)
+    frame_search = LabelFrame(root, borderwidth=0, pady=5, padx=10)
     frame_table = LabelFrame(root, borderwidth=0, pady=10, padx=10)
-    frame_buttons = LabelFrame(root, borderwidth=0, pady=15, padx=10)
+    frame_buttons = LabelFrame(root, borderwidth=0, pady=5, padx=10)
    
     frame_logo.grid(row=0, column=0, sticky="N")
-    frame_table.grid(row=1, column=0, sticky="N")
-    frame_buttons.grid(row=2, column=0, sticky="N")
+    frame_search.grid(row=1, column=0, sticky="W")
+    frame_table.grid(row=2, column=0, sticky="N")
+    frame_buttons.grid(row=3, column=0, sticky="N")
 
     # logo
     logo = Image.open('img/logo.png')
@@ -34,6 +36,7 @@ def main_window():
 
     table = control_area(frame_table, font_main, font_bold, r_x, r_y)
     try:
+        search(frame_search, table, font_main, font_button, 30, 15)
         update_table(table)
         buttons_area(frame_buttons, table, font_form, font_button, r_x)
     except:
