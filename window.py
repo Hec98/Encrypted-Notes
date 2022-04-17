@@ -1,12 +1,9 @@
-from tkinter import Tk, Label,LabelFrame, Button
+from tkinter import Tk, Label, LabelFrame
 from PIL import Image, ImageTk
 
 from table import control_area
 from control_table import update_table, search
 from buttons import buttons_area
-
-from encryption import generate_keys
-# from topWindows import newNote, getTable
 from get_resolution import get_resolution
 
 (r_x, r_y) = get_resolution()
@@ -24,9 +21,9 @@ def main_window():
     frame_buttons = LabelFrame(root, borderwidth=0, pady=5, padx=10)
    
     frame_logo.grid(row=0, column=0, sticky="N")
-    frame_search.grid(row=1, column=0, sticky="W")
-    frame_table.grid(row=2, column=0, sticky="N")
-    frame_buttons.grid(row=3, column=0, sticky="N")
+    frame_search.grid(row=0, column=0, sticky="ES")
+    frame_table.grid(row=1, column=0, sticky="N")
+    frame_buttons.grid(row=2, column=0, sticky="N")
 
     # logo
     logo = Image.open('img/logo.png')

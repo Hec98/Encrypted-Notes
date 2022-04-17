@@ -7,7 +7,7 @@ def control_area(frame, font_main, font_bold, x, y):
     style.configure('mystyle.Treeview.Heading', font=font_bold) # Modify the font of the headings
     style.layout('mystyle.Treeview', [('mystyle.Treeview.treearea', {'sticky': 'nswe'})]) # Remove the borders
     
-    table_tree = Treeview(frame, selectmode="extended", style='mystyle.Treeview', height=round(y/30))
+    table_tree = Treeview(frame, selectmode="extended", style='mystyle.Treeview', height=round(y/28))
 
     scroll_bar = Scrollbar(frame, orient='vertical')
     scroll_bar.grid(row=0, column=1, sticky='NS')
