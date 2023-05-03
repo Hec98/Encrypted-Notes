@@ -31,6 +31,6 @@ echo "def URI():
     return uri" > mongoUri.py
 ```
 
-[![2023-05-02-221347-1599x875-scrot.png](https://i.postimg.cc/qv3c5C1V/2023-05-02-221347-1599x875-scrot.png)](https://postimg.cc/dhJT7DM4)
+![2023-05-02-221347-1599x875-scrot.png](https://i.postimg.cc/qv3c5C1V/2023-05-02-221347-1599x875-scrot.png)
 
 ![logoN1-w.png](https://i.postimg.cc/bvwkKP8Y/logoN1-w.png)
