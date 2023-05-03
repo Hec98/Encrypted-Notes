@@ -1,7 +1,7 @@
 from pymongo import MongoClient
-from mongo_uri import uri
+from mongoUri import URI
 
-MONGO_URI = uri()
+MONGO_URI = URI()
 collection = lambda MONGO_URI: MongoClient(MONGO_URI)['notes']['notes']
 
 set_data = lambda data: collection(MONGO_URI).insert_one(data)
